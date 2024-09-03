@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harry Potter</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function SubmitForm(event) {
+            event.preventDefault();
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+
+            var newPost = document.createElement("div");
+            newPost.classList.add("post");
+            newPost.innerHTML = `
+                <h2>${title}</h2>
+                <p>${content}</p>
+                <button class="like-button" onclick="likePost(this)">Like</button>
+                <button class="dislike-button" onclick="dislikePost(this)">Dislike</button>
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <p>User123: Great post!</p>
+                    </div>
+                    <textarea placeholder="Add a comment"></textarea>
+                    <button onclick="addComment(this)">Add Comment</button>
+                </div>
+            `;
+
+            document.querySelector(".posts").appendChild(newPost);
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+        }
+
+        function likePost(button) {
+            button.innerHTML = "Liked!";
+            button.disabled = true;
+        }
+
+        function dislikePost(button) {
+            button.innerHTML = "Disliked!";
+            button.disabled = true;
+        }
+
+        function addComment(button) {
+            var post = button.closest(".post");
+            var commentText = post.querySelector("textarea").value;
+
+            var newComment = document.createElement("div");
+            newComment.classList.add("comment");
+            newComment.innerHTML = `<p>User123: ${commentText}</p>`;
+
+            post.querySelector(".comment-section").insertBefore(newComment, post.querySelector("textarea").parentNode);
+            post.querySelector("textarea").value = "";
+        }
+    </script>
+</head>
+<body style="background-image: url('common_room.jpeg');">
+    <header>
+        <img src="logo_hp.png" alt="Main image" id="mainImage">
+        <h1>Harry Potter</h1>
+        <p>Home to all the potterheads</p>
+    </header>
+    <section class="addpost">
+        <h1>Add a Post</h1>
+        <form id="AddPost" onsubmit="SubmitForm(event)">
+            <label for="title">Title of your post</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="content">Enter your post content</label>
+            <input type="text" id="content" name="content" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section class="posts">
+        <h1>Featured Post</h1>
+        <div class="post">
+            <h2>The Magic of Hogwarts</h2>
+            <p>Explore the wonders of Hogwarts School of Witchcraft and Wizardry. From magical classes to Quidditch matches, Hogwarts is a place of enchantment and discovery. Share your favorite magical moments at Hogwarts!</p>
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <button class="dislike-button" onclick="dislikePost(this)">Dislike</button>
+            <div class="comment-section">
+                <h3>Comments</h3>
+                <div class="comment">
+                    <p>User123: Fantastic post!</p>
+                </div>
+                <textarea placeholder="Add a comment"></textarea>
+                <button onclick="addComment(this)">Add Comment</button>
+            </div>
+        </div>
+        <h1>Posts</h1>
+        <h2>Is Slytherin House bad?</h2>
+        <p>Slytherin isn't inherently bad. Its members value ambition, cunning, and resourcefulness. However, individual choices define character, and stereotypes can oversimplify. Slytherin's traits, when wielded positively, contribute to a diverse and balanced wizarding society</p>
+        <h2>Dumbledore, biased?</h2>
+        <p>Dumbledore's bias towards Gryffindor House in Hogwarts is evident in his admiration for bravery and courage. While he values these traits, his favoritism occasionally overlooks the strengths of other houses, highlighting a nuanced aspect of his character</p>
+        <h2>What if Peter Pettigrew didn't betray the Potters?</h2>
+        <p>If Peter Pettigrew hadn't betrayed the Potters, Voldemort's initial downfall might have been averted. Without the unintended assistance, the prophecy concerning Harry might remain incomplete, allowing Voldemort to consolidate power and impose his reign of terror, leading to a world dominated by the Dark Arts</p>
+    </section>
+</body>
+</html>
+

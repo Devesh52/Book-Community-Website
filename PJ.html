@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percy Jackson</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function SubmitForm(event) {
+            event.preventDefault();
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+            var newPost = document.createElement("div");
+            newPost.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
+
+            document.querySelector(".posts").appendChild(newPost);
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+        }
+        function likePost(button) {
+            button.innerHTML = "Liked!";
+            button.disabled = true;
+        }
+
+        function dislikePost(button) {
+            button.innerHTML = "Disliked!";
+            button.disabled = true;
+        }
+
+        function addComment(button) {
+            var post = button.closest(".post");
+            var commentText = post.querySelector("textarea").value;
+
+            var newComment = document.createElement("div");
+            newComment.classList.add("comment");
+            newComment.innerHTML = `<p>User123: ${commentText}</p>`;
+
+            post.querySelector(".comment-section").insertBefore(newComment, post.querySelector("textarea").parentNode);
+            post.querySelector("textarea").value = "";
+        }
+    </script>
+    <style>
+        .posts{
+            background-color: #42b6e4;
+        }
+        
+    </style>
+</head>
+<body style="background-image: url('camp.jpeg');">
+    
+    <header>
+        <img src="logo_pj.png" alt="Main image" id="mainImage">
+        <h1>Percy Jackson</h1>
+        <p>Haven for all half bloods</p>
+
+    </header>
+    <section class="addpost">
+        <h1>Add a post</h1>
+        <form id="AddPost" onsubmit="SubmitForm(event)">
+            <label for="title">Title of your post</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="content">Enter your post content</label>
+            <input type="text" id="content" name="content" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section class="posts">
+        <h1>Featured Post</h1>
+        <div class="post">
+            <h2>Shipping Percy and Rachel </h2>
+            <p>In the realm of demigods and destiny, Percy and Rachel's connection transcends mortal boundaries. Their shared understanding of the extraordinary, coupled with Rachel's mortal perspective, creates a harmonious balance, enriching Percy's life with love, empathy, and a unique companionship that defies the divine odds.</p>
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <button class="dislike-button" onclick="dislikePost(this)">Dislike</button>
+            <div class="comment-section">
+                <h3>Comments</h3>
+                <div class="comment">
+                    <p>User123: Terrible post</p>
+                </div>
+                <textarea placeholder="Add a comment"></textarea>
+                <button onclick="addComment(this)">Add Comment</button>
+            </div>
+        </div>
+        <h1>Posts</h1>
+        <h2>Lightning thief>>Rest of the franchise</h2>
+        <p>"The Lightning Thief" stands out as Percy's introduction to his demigod identity, with a captivating twist, suspenseful quests, and thrilling battles. Its novelty and the rawness of Percy's discovery elevate it, making it uniquely impactful compared to subsequent installments. Also, the Percy vs Ares fight was GOATed</p>
+        <h2>Does the franchise insult the greek pantheon?</h2>
+        <p>While the Percy Jackson series embraces Greek mythology, it subtly questions the gods' flaws and capriciousness. The narrative's emphasis on personal responsibility and the hero's journey aligns more with monotheistic ideals, suggesting a nuanced exploration of belief systems in a fantastical context</p>
+        <h2>Heroes of Olympus makes no sense</h2>
+        <p>The blending of Greek and Roman gods in the Percy Jackson universe, while imaginative, introduces contradictions in character personalities and myths. The inherent differences in the two pantheons create challenges for harmonious coexistence, challenging the narrative's internal consistency.</p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord Of The Rings</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function SubmitForm(event) {
+            event.preventDefault();
+            var title = document.getElementById("title").value;
+            var content = document.getElementById("content").value;
+
+            var newPost = document.createElement("div");
+            newPost.classList.add("post");
+            newPost.innerHTML = `
+                <h2>${title}</h2>
+                <p>${content}</p>
+                <button class="like-button" onclick="likePost(this)">Like</button>
+                <button class="dislike-button" onclick="dislikePost(this)">Dislike</button>
+                <div class="comment-section">
+                    <h3>Comments</h3>
+                    <div class="comment">
+                        <p>User123: Great post!</p>
+                    </div>
+                    <textarea placeholder="Add a comment"></textarea>
+                    <button onclick="addComment(this)">Add Comment</button>
+                </div>
+            `;
+
+            document.querySelector(".posts").appendChild(newPost);
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+        }
+
+        function likePost(button) {
+            button.innerHTML = "Liked!";
+            button.disabled = true;
+        }
+
+        function dislikePost(button) {
+            button.innerHTML = "Disliked!";
+            button.disabled = true;
+        }
+
+        function addComment(button) {
+            var post = button.closest(".post");
+            var commentText = post.querySelector("textarea").value;
+
+            var newComment = document.createElement("div");
+            newComment.classList.add("comment");
+            newComment.innerHTML = `<p>User123: ${commentText}</p>`;
+
+            post.querySelector(".comment-section").insertBefore(newComment, post.querySelector("textarea").parentNode);
+            post.querySelector("textarea").value = "";
+        }
+    </script>
+</head>
+<body style="background-image: url('gollumCave.png');">
+    <header>
+        <img src="logo.png" alt="Main image" id="mainImage">
+        <h1>Lord of the Rings</h1>
+        <p>The best fandom in all of Middle Earth</p>
+    </header>
+    <section class="addpost">
+        <h1>Add a Post</h1>
+        <form id="AddPost" onsubmit="SubmitForm(event)">
+            <label for="title">Title of your post</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="content">Enter your post content</label>
+            <input type="text" id="content" name="content" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section class="posts">
+        <h1>Featured Post</h1>
+        <div class="post">
+            <h2>The Ring's Journey</h2>
+            <p>The journey of the One Ring, from the Shire to the fires of Mount Doom, is a tale of power, corruption, and sacrifice. Join Frodo and Sam on this epic quest that changed the fate of Middle-earth.</p>
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <button class="dislike-button" onclick="dislikePost(this)">Dislike</button>
+            <div class="comment-section">
+                <h3>Comments</h3>
+                <div class="comment">
+                    <p>User123: Amazing storytelling!</p>
+                </div>
+                <textarea placeholder="Add a comment"></textarea>
+                <button onclick="addComment(this)">Add Comment</button>
+            </div>
+        </div>
+        <h1>Posts</h1>
+        <h2>Frodo's fate</h2>
+        <p>Frodo, burdened by the One Ring's weight, found solace in the Undying Lands. His departure from Middle-earth symbolized the toll of heroism. Choosing peace over lingering shadows, Frodo sailed into the West, leaving a transformed world and his friends, embodying sacrifice's bittersweet beauty in the heart of Tolkien's legacy</p>
+        <h2>Aragorn is an INFJ</h2>
+        <p>Aragorn's INFJ personality is evident through his insightful leadership, empathy, and quiet strength. He navigates complex emotions, values deep connections, and holds a vision for a harmonious Middle-earth. His introspection and commitment to a greater good resonate with the INFJ archetype</p>
+        <h2>Boromir:Good or Bad?</h2>
+        <p>Boromir, inherently good, valiantly defends Gondor. Tempted by the Ring's power, his momentary lapse showcases human vulnerability. His ultimate sacrifice for Frodo exemplifies redemption, highlighting Boromir's core goodness and undying commitment to protecting his people and friends</p>
+    </section>
+</body>
+</html>
+

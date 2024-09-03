@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Fandom</title>
+    <style>
+        
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #36a2d9;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .fandom-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            max-width: 300px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .fandom-card:hover {
+            
+            transform: scale(1.05);
+        }
+
+        footer {
+            
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            
+            color: #36a2d9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fantasy Fandom</h1>
+        <p>The collective Fandom for Lord of the Rings, Harry Potter, and Percy Jackson.</p>
+    </header>
+
+    <nav>
+        <a href="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings_(film_series)">LOTR</a>
+        <a href="https://en.wikipedia.org/wiki/Harry_Potter">Harry Potter</a>
+        <a href="https://en.wikipedia.org/wiki/Percy_Jackson">Percy Jackson</a>
+        <a href="https://myanimelist.net/manga.php">Manga</a>
+    </nav>
+
+    <section>
+        <div class="fandom-card">
+            <a href="lotr.html"><img src="logo.png" alt="lotr"></a>
+            <h2>Lord of the Rings</h2>
+            <p>Explore the magical world of Middle-earth.</p>
+        </div>
+        <div class="fandom-card">
+            <a href="hp.html"><img src="logo_hp.png" alt="hp"></a>
+            <h2>Harry Potter</h2>
+            <p>Discover the wizarding world and Hogwarts School of Witchcraft and Wizardry.</p>
+        </div>
+        <div class="fandom-card">
+            <a href="PJ.html"><img src="logo_pj.png" alt="Pj"></a>
+            <h2>Percy Jackson</h2>
+            <p>Embark on adventures with demigods and Greek mythology.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Connect with us on social media: <a href="#" target="_blank">Twitter</a> | <a href="#" target="_blank">Instagram</a></p>
+        <p>&copy; 2024 Fantasy Fandom.</p>
+    </footer>
+</body>
+</html>
